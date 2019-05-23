@@ -1,5 +1,6 @@
 import re
 import urllib.request
+import pandas as pd
 
 def getNovelContent():
 	html = urllib.request.urlopen("http://hd.book.qq.com/6477675/vivo.html").read()
@@ -29,6 +30,7 @@ def getNovelContent():
 		bookgirl=str(bookgirl).split("},mounted")[0]
 		bookgirl=str(bookgirl).split(",booklist2:")
 		bookgirl=str(bookgirl).split(",desc1")[0]
+		bookgirls=str(bookgirl).split(",")
 		#print(bookgirl)
         
         #男书列表
@@ -36,20 +38,26 @@ def getNovelContent():
 		bookmen=str(bookmen).split(",booklist2:")
 		bookmen=str(bookmen).split(",desc1")[0]
 		bookmen=str(bookmen).split(",")
-
+		#bookmen1=str(bookmen)
 		print(bookmen)
 
 
+		# print(len(bookmen))
+
+		df=pd.DataFrame(bookmen,columns=['内容'])
+		df.to_excel("wenxuemen.xlsx",index=False)
+
+		df=pd.DataFrame(bookgirls,columns=['内容'])
+		df.to_excel("wenxuemgirl.xlsx",index=False)
+
+
+
+
+
+		#if 'yuewendata' not 
+
 
 		#print(chapter_html)
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__": 
